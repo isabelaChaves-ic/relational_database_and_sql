@@ -1,0 +1,11 @@
+/*E08
+Apresente a query para listar o código e o nome do vendedor com maior número de vendas (contagem), e que estas vendas estejam com o status concluída.  As colunas presentes no resultado devem ser, portanto, cdvdd e nmvdd.*/
+
+SELECT seller.cdvdd, seller.nmvdd
+FROM tbvendedor AS seller
+LEFT JOIN tbvendas AS buy
+    ON seller.cdvdd = buy.cdvdd
+WHERE LOWER(buy.status) = 'concluído'
+GROUP BY seller.cdvdd
+ORDER BY COUNT(buy.cdvdd) DESC
+LIMIT 1;
